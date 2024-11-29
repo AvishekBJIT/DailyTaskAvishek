@@ -1,0 +1,11 @@
+{% extends 'courses/base.html' %}
+
+{% block title %}Home - E-Learning{% endblock %}
+
+{% block content %}
+    <div class="jumbotron text-center">
+        <h1 class="display-4">Welcome to the E-Learning Platform</h1>
+        <p class="lead">Explore a variety of courses and expand your knowledge.</p>
+        <a class="btn btn-primary btn-lg" href="{% url 'course_list' %}" role="button">Browse Courses</a>
+    </div>
+{% endblock %}

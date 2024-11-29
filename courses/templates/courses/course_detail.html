@@ -1,0 +1,26 @@
+{% extends 'courses/base.html' %}
+
+{% block title %}{{ course.title }} - E-Learning{% endblock %}
+
+{% block content %}
+    <h1>{{ course.title }}</h1>
+    <p>{{ course.description }}</p>
+
+    <h2>Lessons</h2>
+    <ul>
+        {% for lesson in course.lessons.all %}
+            <li>{{ lesson.title }}</li>
+        {% endfor %}
+    </ul>
+
+    {% if user.is_authenticated %}
+        {% if user in course.enrollments.all %}
+            <p>You are enrolled in this course.</p>
+        {% else %}
+            <form method="POST" action="{% url 'enroll' course.id %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-success">Enroll</button>
+            </form>
+        {% endif %}
+    {% endif %}
+{% endblock %}
